@@ -45,9 +45,9 @@ public class HTTPServer {
 }
 
 final class HttpRequest implements Runnable {
-    private static String htmlFile = "./client/indexfake.html";
+    private static String htmlFile = "./client/index.html";
     private static String cssFile = "./notFoundHTML/stlyes.css";
-    private static String htmlFileTwo = "./client/genericfake.html";
+    private static String htmlFileTwo = "./client/generic.html";
     private static int round = 1;
     final static String CRLF = "\r\n";
     private Socket socket;
@@ -97,8 +97,6 @@ final class HttpRequest implements Runnable {
         // Construct the response message.
         if (Files.exists(filePath)) {
             String contentType = "Content-type: " + guessContentType(filePath) + CRLF;
-            System.out.println(filePath);
-            System.out.println("Content Type is " + contentType);
             sendResponse(socket, HTTPServer.successStatusCode, contentType, Files.readAllBytes(filePath));
         } else {
             String contentType = "Content-type: " + guessContentType(notFoundPath) + CRLF;
